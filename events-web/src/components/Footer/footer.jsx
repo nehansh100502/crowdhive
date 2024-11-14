@@ -10,7 +10,7 @@ function footer() {
           <div className='text-xl font-semibold text-[#257f91]'> 🌟 Contact Us 🌟</div>
           <div className=' text-center p-7 text-[#257f91]'>
             Email: CrowdHivesevice@gmail.com
-            Contact: 123 45XX XXX
+            Contact: 7300169850
             Our Websits : CrowdHive.com
             🚀🌍
           </div>
