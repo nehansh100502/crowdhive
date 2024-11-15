@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // Configure CORS
 const corsOptions = {
-    origin: 'http://localhost:5173', 
+    origin: 'https://event-drab-ten.vercel.app/', 
     credentials: true,              
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
