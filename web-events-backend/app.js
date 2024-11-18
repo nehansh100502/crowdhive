@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 
 
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config({ path: "config/config.env" });
+    require("dotenv").config({ path: ".env" });
 }
 
 // Configure CORS
@@ -34,5 +35,9 @@ app.use("/api/v1", User);
 app.use("/api/v1", Event);
 app.use("/api/v1", Contact);
 app.use("/api/v1", Ticket);
+app.use(express.static(path.join(__dirname, "../events-web/dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "events-web", "dist", "index.html"));
+});
 
 module.exports = app;

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon web-events-backend/server.js",
+    "build":"npm install && npm install --prefix events-web && npm run build --prefix events-web",
+    "start": "node web-events-backend/server.js"
   },
   "keywords": [
     "events"
