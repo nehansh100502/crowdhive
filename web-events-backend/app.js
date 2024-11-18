@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // Configure CORS
 const corsOptions = {
-    origin: 'https://event-drab-ten.vercel.app', 
+    origin: 'https://crowdhive.onrender.com', 
     credentials: true,              
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']

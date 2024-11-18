@@ -39,7 +39,7 @@ const CreateEvent = () => {
   // Fetch all events to display in the list
   const fetchEvents = async () => {
     try {
-      const response = await axios.get("http://localhost:4001/api/v1/events");
+      const response = await axios.get("https://crowdhive.onrender.com/api/v1/events");
       setEvents(response.data); // Assuming the response data is an array of events
     } catch (error) {
       console.error("Error fetching events", error);
@@ -78,7 +78,7 @@ const CreateEvent = () => {
 
     try {
       // Post the form data to the backend, including the token in headers
-      const response = await axios.post("http://localhost:4001/api/v1/events", data, {
+      const response = await axios.post("https://crowdhive.onrender.com/api/v1/events", data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`, // Include token in the request headers
@@ -109,7 +109,7 @@ const CreateEvent = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
-        await axios.delete(`http://localhost:4001/api/v1/events/${id}`);
+        await axios.delete(`https://crowdhive.onrender.com/api/v1/events/${id}`);
         setMessage("Event deleted successfully!");
         // Fetch updated events after deletion
         fetchEvents();

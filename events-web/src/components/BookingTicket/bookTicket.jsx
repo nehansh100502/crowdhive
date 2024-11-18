@@ -25,7 +25,7 @@ function TicketBooking() {
 
     // Simulate form submission
     try {
-      const response = await fetch('http://localhost:4001/api/v1/tickets', {
+      const response = await fetch('https://crowdhive.onrender.com/api/v1/tickets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

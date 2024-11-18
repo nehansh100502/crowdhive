@@ -14,7 +14,7 @@ const FindEvent = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/api/v1/events');
+        const response = await axios.get('https://crowdhive.onrender.com/api/v1/events');
         setEvents(response.data);
         setFilteredEvents(response.data); // Initialize filteredEvents with all events
       } catch (error) {
@@ -62,7 +62,7 @@ const FindEvent = () => {
               className="p-4 bg-[#ffffffe9] rounded-md shadow-md w-[380px] h-[380px] m-4 flex flex-col items-center hover:bg-[#8deff5ba] cursor-pointer font-bold "
             >
               <img
-                src={`http://localhost:4001/uploads/${event.image}`} // Ensure the URL is correct
+                src={`https://crowdhive.onrender.com/uploads/${event.image}`} // Ensure the URL is correct
                 alt={event.title}
                 className="w-full h-[190px] object-cover rounded-md mb-2"
               />

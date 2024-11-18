@@ -92,7 +92,7 @@ function EventList() {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const response = await axios.get('http://localhost:4001/api/v1/events');
+        const response = await axios.get('https://crowdhive.onrender.com/api/v1/events');
         // Ensure the response contains the events array
         setEvents(response.data || []); // Adjust if response data structure is different
       } catch (error) {
@@ -110,7 +110,7 @@ function EventList() {
   const handleDelete = async (eventId) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
-        await axios.delete(`http://localhost:4001/api/v1/events/${eventId}`);
+        await axios.delete(`https://crowdhive.onrender.com/api/v1/events/${eventId}`);
         // Remove the deleted event from the state
         setEvents(events.filter((event) => event._id !== eventId));
         alert('Event deleted successfully!');

@@ -51,7 +51,7 @@ function Headers() {
     const token = storedData?.token;
 
     try {
-      const response = await fetch("http://localhost:4001/api/v1/profile", {
+      const response = await fetch("https://crowdhive.onrender.com/api/v1/profile", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,7 +82,7 @@ function Headers() {
     }
 
     try {
-      const response = await fetch("http://localhost:4001/api/v1/logout", {
+      const response = await fetch("https://crowdhive.onrender.com/api/v1/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

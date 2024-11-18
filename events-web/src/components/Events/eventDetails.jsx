@@ -13,7 +13,7 @@ const EventDetail = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await axios.get(`http://localhost:4001/api/v1/events/${id}`);
+        const response = await axios.get(`https://crowdhive.onrender.com/api/v1/events/${id}`);
         setEvent(response.data);
       } catch (error) {
         setError('Error fetching event details');
@@ -39,7 +39,7 @@ const EventDetail = () => {
         </div>
         <h2 className="text-3xl font-bold text-gray-800 mb-6">{event.title}</h2>
         <img
-          src={`http://localhost:4001/uploads/${event.image}`} // Ensure the URL is correct
+          src={`https://crowdhive.onrender.com/uploads/${event.image}`} // Ensure the URL is correct
           alt={event.title}
           className="w-[350px] h-[190px] object-cover rounded-md mb-2"
         />
