@@ -62,7 +62,7 @@ const FindEvent = () => {
               className="p-4 bg-[#ffffffe9] rounded-md shadow-md w-[380px] h-[380px] m-4 flex flex-col items-center hover:bg-[#8deff5ba] cursor-pointer font-bold "
             >
              <img
-  src={`https://crowdhive.onrender.com/uploads/${event.image}`}
+  src={`https://crowdhive.onrender.com/uploads/eventA.jpg`}
   alt={event.title}
   className="w-full h-[190px] object-cover rounded-md mb-2"
   onError={(e) => (e.target.src = 'eventA.jpg')}
