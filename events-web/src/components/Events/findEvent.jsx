@@ -69,11 +69,19 @@ const FindEvent = () => {
 /> */}
 
 <img
-  src={`https://crowdhive.onrender.com/uploads/${event.image || 'eventA.jpg'}`}
+  src={
+    event.image
+      ? `https://crowdhive.onrender.com/uploads/${event.image}`
+      : 'https://via.placeholder.com/400x200?text=No+Image'
+  }
   alt={event.title}
   className="w-full h-[190px] object-cover rounded-md mb-2"
-  onError={(e) => (e.target.src = 'https://via.placeholder.com/400x200?text=No+Image')}
+  onError={(e) => {
+    e.target.onerror = null; // Prevent infinite fallback loop
+    e.target.src = 'https://via.placeholder.com/400x200?text=No+Image';
+  }}
 />
+
 
 
 
