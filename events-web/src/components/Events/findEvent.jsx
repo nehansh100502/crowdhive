@@ -84,15 +84,13 @@ const FindEvent = () => {
 
 
 
-
-
               <h3 className="text-lg">{event.title}</h3>
               <p className="text-gray-700">{event.city}, {event.state}</p>
               <p className="text-gray-700">{event.eventType}</p>
               <p className="text-gray-700">{event.date}</p>
               <p className="text-gray-700">
-                {event.description.length > 50
-                  ? `${event.description.substring(0, 50)}...`
+                {event.description.length > 30
+                  ? `${event.description.substring(0, 30)}...`
                   : event.description}
               </p>
               <Link
