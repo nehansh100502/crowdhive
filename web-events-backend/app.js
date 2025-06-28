@@ -1,58 +1,121 @@
+// const express = require("express");
+// const app = express();
+// const cors = require('cors');
+// const axios = require('axios');
+// const path = require('path');
+
+
+// if (process.env.NODE_ENV !== "production") {
+//     require("dotenv").config({ path: ".env" });
+// }
+
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         console.error("❌ Blocked by CORS:", origin);
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+//     allowedHeaders: ["Content-Type", "Authorization"]
+//   };
+  
+//   app.use(cors(corsOptions));
+//   app.options("*", cors(corsOptions)); // Handle preflight
+  
+
+// // // Configure CORS
+// // const corsOptions = {
+// //     origin: 'https://crowdhive.onrender.com', 
+// //     credentials: true,              
+// //     methods: ['GET', 'POST', 'OPTIONS'],
+// //     allowedHeaders: ['Content-Type', 'Authorization']
+// // };
+
+// // app.use(cors(corsOptions));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// // Serve images from the uploads folder
+// app.use("/uploads", express.static("middleware/uploads"));
+
+// const Session = require("./routes/session");
+// const User = require("./routes/user");
+// const Event = require("./routes/event");
+// const Contact = require("./routes/contact");
+// const Ticket = require("./routes/ticket");
+
+
+// app.use("/api/v1", Session);
+// app.use("/api/v1", User);
+// app.use("/api/v1", Event);
+// app.use("/api/v1", Contact);
+// app.use("/api/v1", Ticket);
+// app.use(express.static(path.join(__dirname, "../events-web/dist")));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "events-web", "dist", "index.html"));
+// });
+
+// module.exports = app;
+
+
 const express = require("express");
 const app = express();
 const cors = require('cors');
 const axios = require('axios');
 const path = require('path');
 
-
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config({ path: ".env" });
 }
 
+// ✅ Define allowed origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://crowdhive-neha-singhs-projects-53deb9dc.vercel.app",
+  "https://crowdhive.onrender.com"
+];
+
+// ✅ Configure CORS properly
 const corsOptions = {
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.error("❌ Blocked by CORS:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    allowedHeaders: ["Content-Type", "Authorization"]
-  };
-  
-  app.use(cors(corsOptions));
-  app.options("*", cors(corsOptions)); // Handle preflight
-  
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.error("❌ Blocked by CORS:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
 
-// // Configure CORS
-// const corsOptions = {
-//     origin: 'https://crowdhive.onrender.com', 
-//     credentials: true,              
-//     methods: ['GET', 'POST', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization']
-// };
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight
 
-// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Serve images from the uploads folder
+
+// Static files
 app.use("/uploads", express.static("middleware/uploads"));
 
+// Routes
 const Session = require("./routes/session");
 const User = require("./routes/user");
 const Event = require("./routes/event");
 const Contact = require("./routes/contact");
 const Ticket = require("./routes/ticket");
 
-
 app.use("/api/v1", Session);
 app.use("/api/v1", User);
 app.use("/api/v1", Event);
 app.use("/api/v1", Contact);
 app.use("/api/v1", Ticket);
+
+// Serve frontend
 app.use(express.static(path.join(__dirname, "../events-web/dist")));
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "events-web", "dist", "index.html"));
