@@ -71,28 +71,25 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config({ path: ".env" });
 }
 
-// ✅ Define allowed origins
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://crowdhive-neha-singhs-projects-53deb9dc.vercel.app",
-  "https://crowdhive.onrender.com"
-];
-
-// ✅ Configure CORS properly
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.error("❌ Blocked by CORS:", origin);
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: ["Content-Type", "Authorization"]
-};
-
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://crowdhive-neha-singhs-projects-53deb9dc.vercel.app",
+        "https://crowdhive.onrender.com"
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error("❌ Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization"]
+  };
+  
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight
 
