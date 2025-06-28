@@ -72,15 +72,16 @@ const FindEvent = () => {
   src={
     event.image
       ? `https://crowdhive.onrender.com/uploads/${event.image}`
-      : 'https://via.placeholder.com/400x200?text=No+Image'
+      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY1bEDe_aXDzAXQZy7DZVLOGqS8F7pdAJqw&s'
   }
   alt={event.title}
   className="w-full h-[190px] object-cover rounded-md mb-2"
   onError={(e) => {
-    e.target.onerror = null; // Prevent infinite fallback loop
-    e.target.src = 'https://via.placeholder.com/400x200?text=No+Image';
+    e.target.onerror = null; // Prevent infinite loop
+    e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfY1bEDe_aXDzAXQZy7DZVLOGqS8F7pdAJqw&s';
   }}
 />
+
 
 
 
