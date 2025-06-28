@@ -9,15 +9,33 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config({ path: ".env" });
 }
 
-// Configure CORS
 const corsOptions = {
-    origin: 'https://crowdhive.onrender.com', 
-    credentials: true,              
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-};
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error("❌ Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization"]
+  };
+  
+  app.use(cors(corsOptions));
+  app.options("*", cors(corsOptions)); // Handle preflight
+  
 
-app.use(cors(corsOptions));
+// // Configure CORS
+// const corsOptions = {
+//     origin: 'https://crowdhive.onrender.com', 
+//     credentials: true,              
+//     methods: ['GET', 'POST', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// };
+
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Serve images from the uploads folder
