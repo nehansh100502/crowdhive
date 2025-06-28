@@ -72,8 +72,9 @@ const FindEvent = () => {
   src={`https://crowdhive.onrender.com/uploads/${event.image || 'eventA.jpg'}`}
   alt={event.title}
   className="w-full h-[190px] object-cover rounded-md mb-2"
-  onError={(e) => (e.target.src = 'https://via.placeholder.com/400x200.png?text=No+Image')}
+  onError={(e) => (e.target.src = 'https://via.placeholder.com/400x200?text=No+Image')}
 />
+
 
 
               <h3 className="text-lg">{event.title}</h3>
